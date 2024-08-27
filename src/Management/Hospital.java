@@ -21,15 +21,7 @@ public class Hospital {
     public Hospital(String name, String location) {
         this.name = name;
         this.location = location;
-        this.departments = new Department[0];  // Initialize as empty arrays
-        this.doctors = new Doctor[0];
-        this.nurses = new Nurse[0];
-        this.patients = new Patient[0];
-        this.admins = new Admin[0];
-        this.medicalRecords = new MedicalRecord[0];
-        this.equipments = new MedicalEquipment[0];
-        this.appointments = new Appointment[0];
-        this.prescriptions = new Prescription[0];
+
     }
 
     // Method to add a doctor
