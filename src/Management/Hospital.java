@@ -27,17 +27,23 @@ public class Hospital {
 
     }
 
-    // Method to add a billing record
+
     public void addBilling(Billing billing) {
         billings = Arrays.copyOf(billings, billings.length + 1);
         billings[billings.length - 1] = billing;
     }
 
-    // Method to add an invoice
+
     public void addInvoice(Invoice invoice) {
         invoices = Arrays.copyOf(invoices, invoices.length + 1);
         invoices[invoices.length - 1] = invoice;
     }
+
+    public void addPayment(Payment payment) {
+        payments = Arrays.copyOf(payments, payments.length + 1);
+        payments[payments.length - 1] = payment;
+    }
+
     public void addDoctor(Doctor doctor) {
         doctors = Arrays.copyOf(doctors, doctors.length + 1);
         doctors[doctors.length - 1] = doctor;
