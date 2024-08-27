@@ -57,11 +57,6 @@ public class Main {
         MedicalRecord record1 = new MedicalRecord(patient1, doctor1);
         MedicalRecord record2 = new MedicalRecord(patient2, doctor2);
 
-        record1.addDiagnosis("Acute Myocardial Infarction");
-        record1.addTreatment("Angioplasty");
-
-        record2.addDiagnosis("Chronic Migraine");
-        record2.addTreatment("Pain Management Therapy");
 
 
 
