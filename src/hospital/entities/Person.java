@@ -1,11 +1,20 @@
 package hospital.entities;
 
+import Interfaces.*;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
-public abstract class Person {
+public abstract class Person implements HospitalStaff {
     private String name;
     private LocalDate birthDate;
+    private static int instanceCount;
+
+    static {
+        instanceCount = 0;
+        System.out.println("Person class loaded. Instance count set to 0.");
+    }
+
 
     protected Person(String name, LocalDate birthDate) {
         this.name = name;

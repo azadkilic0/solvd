@@ -1,11 +1,13 @@
 package Management;
 
+import Interfaces.*;
+import hospital.entities.MedicalRecord;
 import hospital.entities.Person;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Admin extends Person {
+public class Admin extends Person implements AdministrativeStaff, RecordKeeper  {
     private String role;
     private int yearsOfService;
 
@@ -18,6 +20,11 @@ public class Admin extends Person {
     @Override
     public void work() {
         System.out.println("Admin " + getName() + " is managing hospital operations.");
+    }
+
+    @Override
+    public void performDuties() {
+
     }
 
     @Override
@@ -58,5 +65,25 @@ public class Admin extends Person {
     @Override
     public int hashCode() {
         return Objects.hash(role, yearsOfService);
+    }
+
+    @Override
+    public void manageRecords() {
+
+    }
+
+    @Override
+    public void scheduleAppointments() {
+
+    }
+
+    @Override
+    public void keepRecords() {
+
+    }
+
+    @Override
+    public void updateRecords(MedicalRecord record) {
+
     }
 }

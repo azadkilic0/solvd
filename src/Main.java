@@ -15,12 +15,15 @@ public class Main {
         // Creating a hospital
         Hospital hospital = new Hospital("City Hospital", "123 Main St");
 
+        // Creating a HospitalService instance
+        HospitalService hospitalService = new HospitalService(hospital, 100); // Managing hospital operations
+
         // Creating departments
         Department cardiology = new Department("Cardiology", 20, 30, 10, 100);
         Department neurology = new Department("Neurology", 15, 20, 5, 80);
 
-        hospital.addDepartment(cardiology);
-        hospital.addDepartment(neurology);
+        hospitalService.addDepartment(cardiology);
+        hospitalService.addDepartment(neurology);
 
         // Creating doctors
         Doctor doctor1 = new Doctor("Dr. John Smith", LocalDate.of(1980, 5, 15), "Cardiologist");
@@ -47,8 +50,8 @@ public class Main {
         Patient patient1 = new Patient("Tom Green", LocalDate.of(1995, 7, 20), "Heart Disease", LocalDate.of(2023, 9, 15));
         Patient patient2 = new Patient("Sarah Black", LocalDate.of(2000, 1, 15), "Migraine", LocalDate.of(2023, 9, 16));
 
-        hospital.addPatient(patient1);
-        hospital.addPatient(patient2);
+        hospitalService.addPatient(patient1);
+        hospitalService.addPatient(patient2);
 
         // Creating medical records
         MedicalRecord record1 = new MedicalRecord(patient1, doctor1);
@@ -60,33 +63,29 @@ public class Main {
         record2.addDiagnosis("Chronic Migraine");
         record2.addTreatment("Pain Management Therapy");
 
-        hospital.addMedicalRecord(record1);
-        hospital.addMedicalRecord(record2);
+
 
         // Creating appointments
         Appointment appointment1 = new Appointment(LocalDate.of(2023, 9, 18), doctor1, patient1);
         Appointment appointment2 = new Appointment(LocalDate.of(2023, 9, 19), doctor2, patient2);
 
-        hospital.addAppointment(appointment1);
-        hospital.addAppointment(appointment2);
+
 
         // Creating prescriptions
         Prescription prescription1 = new Prescription("Aspirin", "100mg once daily", patient1, doctor1);
         Prescription prescription2 = new Prescription("Sumatriptan", "50mg as needed", patient2, doctor2);
 
-        hospital.addPrescription(prescription1);
-        hospital.addPrescription(prescription2);
 
-        // Displaying information
-        System.out.println(hospital);
 
-        // Display details of specific persons
+        // Displaying hospital information
+        hospitalService.displayHospitalInfo();
+
+        // Display details of specific persons using HospitalService static method
         HospitalService.displayPersonDetails(doctor1);
         HospitalService.displayPersonDetails(nurse1);
         HospitalService.displayPersonDetails(patient1);
 
-        // Using HospitalService utility methods
-        HospitalService hospitalService = new HospitalService(100);  // Assuming max 100 beds in the hospital
+        // Process persons
         hospitalService.processPerson(patient1);
         hospitalService.processPerson(doctor1);
 
@@ -102,30 +101,30 @@ public class Main {
         LocalDate admissionDate = LocalDate.parse(scanner.nextLine());
 
         Patient newPatient = new Patient(name, birthDate, disease, admissionDate);
-        hospital.addPatient(newPatient);
+        hospitalService.addPatient(newPatient);
 
         System.out.println("New patient added: " + newPatient);
 
-        // Merge sort functionality
-        System.out.println("Merge Sort Example");
-        System.out.println("Enter the elements of the array separated by space:");
-        String[] arrayInput = scanner.nextLine().split(" ");
-        int[] array = new int[arrayInput.length];
-
-        try {
-            for (int i = 0; i < arrayInput.length; i++) {
-                array[i] = Integer.parseInt(arrayInput[i]);
-            }
-            mergeSort(array, 0, array.length - 1);
-
-            System.out.println("Sorted array:");
-            for (int num : array) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
-        } catch (NumberFormatException e) {
-            System.out.println("Error: All input values must be integers.");
-        }
+//        // Merge sort functionality demonstration
+//        System.out.println("Merge Sort Example");
+//        System.out.println("Enter the elements of the array separated by space:");
+//        String[] arrayInput = scanner.nextLine().split(" ");
+//        int[] array = new int[arrayInput.length];
+//
+//        try {
+//            for (int i = 0; i < arrayInput.length; i++) {
+//                array[i] = Integer.parseInt(arrayInput[i]);
+//            }
+//            mergeSort(array, 0, array.length - 1);
+//
+//            System.out.println("Sorted array:");
+//            for (int num : array) {
+//                System.out.print(num + " ");
+//            }
+//            System.out.println();
+//        } catch (NumberFormatException e) {
+//            System.out.println("Error: All input values must be integers.");
+//        }
 
         scanner.close();
     }

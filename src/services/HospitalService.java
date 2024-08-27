@@ -3,16 +3,37 @@ package hospital.services;
 import hospital.entities.Patient;
 import hospital.entities.Person;
 import Management.Department;
+import Management.Hospital;
+
+import java.util.Arrays;
 
 public class HospitalService {
+    // Static variable
+    private static final String DEFAULT_HOSPITAL_NAME = "Default Hospital";
+
+    // Static block
+    static {
+        System.out.println("HospitalService class loaded. Default hospital name is: " + DEFAULT_HOSPITAL_NAME);
+    }
+
+    private Hospital hospital;
     private Patient[] patients;
     private Department[] departments;
     private int maxBeds;
 
-    public HospitalService(int maxBeds) {
-        this.maxBeds = maxBeds;
+    public HospitalService(Hospital hospital, int maxBeds) {
+        this.hospital = hospital;
         this.patients = new Patient[maxBeds];
-        this.departments = new Department[10];
+        this.departments = new Department[0];  // Initialize as an empty array
+    }
+
+    // Static method
+    public static void displayDefaultHospitalName() {
+        System.out.println("The default hospital name is: " + DEFAULT_HOSPITAL_NAME);
+    }
+
+    public void displayHospitalInfo() {
+        System.out.println("Welcome to " + hospital.getName() + " located at " + hospital.getLocation());
     }
 
     public void addPatient(Patient patient) {
@@ -38,14 +59,9 @@ public class HospitalService {
     }
 
     public void addDepartment(Department department) {
-        for (int i = 0; i < departments.length; i++) {
-            if (departments[i] == null) {
-                departments[i] = department;
-                System.out.println("Department added: " + department.getName());
-                return;
-            }
-        }
-        System.out.println("Cannot add department. Maximum capacity reached.");
+        departments = Arrays.copyOf(departments, departments.length + 1);
+        departments[departments.length - 1] = department;
+        System.out.println("Department added: " + department.getName());
     }
 
     public Patient[] getPatients() {

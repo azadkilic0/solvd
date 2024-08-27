@@ -1,8 +1,10 @@
 package hospital.entities;
 
+import Interfaces.MedicalProfessional;
+
 import java.time.LocalDate;
 
-public class Doctor extends Person {
+public class Doctor extends Person implements MedicalProfessional {
     private String specialty;
 
     public Doctor(String name, LocalDate birthDate, String specialty) {
@@ -13,6 +15,11 @@ public class Doctor extends Person {
     @Override
     public void work() {
         System.out.println("Doctor " + getName() + " is treating patients.");
+    }
+
+    @Override
+    public void performDuties() {
+
     }
 
     @Override
@@ -45,5 +52,15 @@ public class Doctor extends Person {
     @Override
     public int hashCode() {
         return specialty.hashCode();
+    }
+
+    @Override
+    public void treatPatient(Patient patient) {
+
+    }
+
+    @Override
+    public void prescribeMedication(Patient patient, Prescription prescription) {
+
     }
 }
