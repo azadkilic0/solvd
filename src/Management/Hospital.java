@@ -1,5 +1,6 @@
 package Management;
 
+import Accounting.*;
 import hospital.entities.*;
 import services.Appointment;
 
@@ -17,14 +18,26 @@ public class Hospital {
     private MedicalEquipment[] equipments;
     private Appointment[] appointments;
     private Prescription[] prescriptions;
-
+    private Billing[] billings;
+    private Invoice[] invoices;
+    private Payment[] payments;
     public Hospital(String name, String location) {
         this.name = name;
         this.location = location;
 
     }
 
+    // Method to add a billing record
+    public void addBilling(Billing billing) {
+        billings = Arrays.copyOf(billings, billings.length + 1);
+        billings[billings.length - 1] = billing;
+    }
 
+    // Method to add an invoice
+    public void addInvoice(Invoice invoice) {
+        invoices = Arrays.copyOf(invoices, invoices.length + 1);
+        invoices[invoices.length - 1] = invoice;
+    }
     public void addDoctor(Doctor doctor) {
         doctors = Arrays.copyOf(doctors, doctors.length + 1);
         doctors[doctors.length - 1] = doctor;
@@ -77,6 +90,18 @@ public class Hospital {
         prescriptions[prescriptions.length - 1] = prescription;
     }
 
+    public Billing[] getBillings() {
+        return billings;
+    }
+
+    public Invoice[] getInvoices() {
+        return invoices;
+    }
+
+    public Payment[] getPayments() {
+        return payments;
+    }
+
     public Department[] getDepartments() {
         return departments;
     }
@@ -127,8 +152,12 @@ public class Hospital {
                 ", equipments=" + Arrays.toString(equipments) +
                 ", appointments=" + Arrays.toString(appointments) +
                 ", prescriptions=" + Arrays.toString(prescriptions) +
+                ", billings=" + Arrays.toString(billings) +
+                ", invoices=" + Arrays.toString(invoices) +
+                ", payments=" + Arrays.toString(payments) +
                 '}';
     }
+
 
     public String getName() {
         return name;
