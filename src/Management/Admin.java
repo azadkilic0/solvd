@@ -24,7 +24,10 @@ public class Admin extends Person implements AdministrativeStaff, RecordKeeper  
 
     @Override
     public void performDuties() {
-
+        System.out.println("Admin " + getName() + " is performing administrative duties.");
+        manageRecords();
+        keepRecords();
+        scheduleAppointments();
     }
 
     @Override
@@ -69,21 +72,21 @@ public class Admin extends Person implements AdministrativeStaff, RecordKeeper  
 
     @Override
     public void manageRecords() {
-
+        System.out.println("Admin " + getName() + " is managing medical records.");
     }
 
     @Override
     public void scheduleAppointments() {
-
+        System.out.println("Admin " + getName() + " is scheduling appointments.");
     }
 
     @Override
     public void keepRecords() {
-
+        System.out.println("Admin " + getName() + " is keeping records up-to-date.");
     }
 
     @Override
     public void updateRecords(MedicalRecord record) {
-
+        System.out.println("Admin " + getName() + " is updating the medical record for patient: " + record.getPatient().getName());
     }
 }

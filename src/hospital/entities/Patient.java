@@ -55,10 +55,10 @@ public class Patient extends Person {
         System.out.println("Patient " + getName() + " is resting to recover.");
     }
 
-    // Implement the performDuties() method from the Person class
+
     @Override
     public void performDuties() {
-        // For example, you might log or handle patient-related duties here
+
         System.out.println("Patient " + getName() + " is undergoing treatment for " + disease + ".");
     }
 

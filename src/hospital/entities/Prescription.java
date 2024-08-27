@@ -72,4 +72,12 @@ public class Prescription {
     public int hashCode() {
         return Objects.hash(medicationName, dosage, patient, doctor);
     }
+
+    public String getMedication() {
+        return medicationName;
+    }
+
+    public void setMedication(String medication) {
+        this.medicationName = medication;
+    }
 }

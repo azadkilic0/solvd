@@ -1,7 +1,6 @@
 package hospital.entities;
 
 import Interfaces.MedicalProfessional;
-
 import java.time.LocalDate;
 
 public class Doctor extends Person implements MedicalProfessional {
@@ -19,18 +18,12 @@ public class Doctor extends Person implements MedicalProfessional {
 
     @Override
     public void performDuties() {
-
+        System.out.println("Doctor " + getName() + " is performing medical duties.");
     }
 
     @Override
     public String getRole() {
         return "Doctor";
-    }
-
-    @Override
-    public String toString() {
-        return "Doctor{name='" + getName() + "', birthDate=" + getBirthDate() +
-                ", specialty='" + specialty + "'}";
     }
 
     public String getSpecialty() {
@@ -55,12 +48,19 @@ public class Doctor extends Person implements MedicalProfessional {
     }
 
     @Override
-    public void treatPatient(Patient patient) {
+    public String toString() {
+        return "Doctor{name='" + getName() + "', birthDate=" + getBirthDate() +
+                ", specialty='" + specialty + "'}";
+    }
 
+    @Override
+    public void treatPatient(Patient patient) {
+        System.out.println("Doctor " + getName() + " is treating patient " + patient.getName() + " for " + patient.getDisease() + ".");
     }
 
     @Override
     public void prescribeMedication(Patient patient, Prescription prescription) {
-
+        System.out.println("Doctor " + getName() + " prescribes " + prescription.getMedication() + " to " + patient.getName() + ".");
     }
+
 }

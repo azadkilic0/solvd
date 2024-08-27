@@ -1,7 +1,7 @@
 package hospital.entities;
 
-import Interfaces.*;
-
+import Interfaces.MedicalProfessional;
+import Interfaces.PatientCare;
 import java.time.LocalDate;
 
 public class Nurse extends Person implements MedicalProfessional, PatientCare  {
@@ -19,7 +19,9 @@ public class Nurse extends Person implements MedicalProfessional, PatientCare  {
 
     @Override
     public void performDuties() {
-
+        System.out.println("Nurse " + getName() + " is performing all assigned nursing duties.");
+        careForPatient(new Patient(getName(), getBirthDate(), "General Care", LocalDate.now()));
+        provideAssistance(new Patient(getName(), getBirthDate(), "General Care", LocalDate.now()));
     }
 
     @Override
@@ -56,21 +58,21 @@ public class Nurse extends Person implements MedicalProfessional, PatientCare  {
 
     @Override
     public void treatPatient(Patient patient) {
-
+        System.out.println("Nurse " + getName() + " is caring for patient " + patient.getName() + ".");
     }
 
     @Override
     public void prescribeMedication(Patient patient, Prescription prescription) {
-
+        System.out.println("Nurse " + getName() + " is recommending medication: " + prescription.getMedication() + " to patient " + patient.getName() + ".");
     }
 
     @Override
     public void careForPatient(Patient patient) {
-
+        System.out.println("Nurse " + getName() + " is providing general care to patient " + patient.getName() + ".");
     }
 
     @Override
     public void provideAssistance(Patient patient) {
-
+        System.out.println("Nurse " + getName() + " is assisting patient " + patient.getName() + " with their daily activities.");
     }
 }
