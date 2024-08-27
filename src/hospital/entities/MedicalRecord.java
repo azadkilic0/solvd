@@ -12,8 +12,6 @@ public class MedicalRecord {
     public MedicalRecord(Patient patient, Doctor doctor) {
         this.patient = patient;
         this.doctor = doctor;
-        this.diagnoses = new String[0];  // Initialize as an empty array
-        this.treatments = new String[0]; // Initialize as an empty array
     }
 
     // Method to add a diagnosis
