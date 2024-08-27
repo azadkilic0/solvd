@@ -24,55 +24,54 @@ public class Hospital {
 
     }
 
-    // Method to add a doctor
+
     public void addDoctor(Doctor doctor) {
         doctors = Arrays.copyOf(doctors, doctors.length + 1);
         doctors[doctors.length - 1] = doctor;
     }
 
-    // Method to add a nurse
+
     public void addNurse(Nurse nurse) {
         nurses = Arrays.copyOf(nurses, nurses.length + 1);
         nurses[nurses.length - 1] = nurse;
     }
 
-    // Method to add a patient
+
     public void addPatient(Patient patient) {
         patients = Arrays.copyOf(patients, patients.length + 1);
         patients[patients.length - 1] = patient;
     }
 
-    // Method to add an admin
+
     public void addAdmin(Admin admin) {
         admins = Arrays.copyOf(admins, admins.length + 1);
         admins[admins.length - 1] = admin;
     }
 
-    // Method to add a department
+
     public void addDepartment(Department department) {
         departments = Arrays.copyOf(departments, departments.length + 1);
         departments[departments.length - 1] = department;
     }
 
-    // Method to add a medical record
+
     public void addMedicalRecord(MedicalRecord record) {
         medicalRecords = Arrays.copyOf(medicalRecords, medicalRecords.length + 1);
         medicalRecords[medicalRecords.length - 1] = record;
     }
 
-    // Method to add medical equipment
     public void addEquipment(MedicalEquipment equipment) {
         equipments = Arrays.copyOf(equipments, equipments.length + 1);
         equipments[equipments.length - 1] = equipment;
     }
 
-    // Method to add an appointment
+
     public void addAppointment(Appointment appointment) {
         appointments = Arrays.copyOf(appointments, appointments.length + 1);
         appointments[appointments.length - 1] = appointment;
     }
 
-    // Method to add a prescription
+
     public void addPrescription(Prescription prescription) {
         prescriptions = Arrays.copyOf(prescriptions, prescriptions.length + 1);
         prescriptions[prescriptions.length - 1] = prescription;
