@@ -10,11 +10,9 @@ public class Billing {
     private String[] services;
     private double[] costs;
 
-    public Billing(Patient patient) {
+    public Billing(Patient patient, String[] services) {
         this.patient = patient;
-        this.services = new String[0];  // Initialize empty array
-        this.costs = new double[0];     // Initialize empty array
-        this.totalAmount = 0.0;
+        this.services = services;
     }
 
     // Add a service and its cost
@@ -41,4 +39,5 @@ public class Billing {
                 ", costs=" + Arrays.toString(costs) +
                 '}';
     }
+
 }

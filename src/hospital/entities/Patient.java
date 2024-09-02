@@ -1,22 +1,44 @@
 package hospital.entities;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
+
 import Accounting.Billing;
-import Accounting.Invoice;
 import Accounting.Payment;
+import exceptions.InsufficientFundsException;
+
+
 public class Patient extends Person {
     protected String disease;
+
     private LocalDate admissionDate;
     private Billing[] billingRecords;
     private Payment[] payments;
     private int billingCount;
     private int paymentCount;
+    private static final Logger logger = Logger.getLogger(Patient.class.getName());
+
+    static {
+        try {
+            FileHandler fileHandler = new FileHandler("patient.log", true);
+            fileHandler.setFormatter(new SimpleFormatter());
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.severe("Failed to set up logger file handler: " + e.getMessage());
+        }
+    }
+
     public Patient(String name, LocalDate birthDate, String disease, LocalDate admissionDate) {
         super(name, birthDate);
         this.disease = disease;
         this.admissionDate = admissionDate;
     }
+
     public void addBilling(Billing billing) {
         if (billingCount >= billingRecords.length) {
             billingRecords = expandArray(billingRecords);
@@ -25,10 +47,29 @@ public class Patient extends Person {
     }
 
     public void addPayment(Payment payment) {
+        double totalBilled = calculateTotalBilled();
+        double totalPaid = calculateTotalPaid();
+
+        if (totalPaid + payment.getAmountPaid() > totalBilled) {
+            logger.severe("Insufficient funds to process payment of $"
+                    + payment.getAmountPaid() + " for patient " + getName());
+            throw new InsufficientFundsException("Insufficient funds to process payment of $"
+                    + payment.getAmountPaid() + " for patient " + getName());
+        }
+
         if (paymentCount >= payments.length) {
             payments = expandArray(payments);
         }
         payments[paymentCount++] = payment;
+
+        logger.info("Payment of $" + payment.getAmountPaid() + " processed successfully for patient " + getName());
+
+        // Log payment details to a file using try-with-resources
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("payment_details.log", true))) {
+            writer.write("Payment recorded: $" + payment.getAmountPaid() + " for patient " + getName() + "\n");
+        } catch (IOException e) {
+            logger.severe("Failed to log payment details: " + e.getMessage());
+        }
     }
 
     public Billing[] getBillingRecords() {
@@ -50,15 +91,30 @@ public class Patient extends Person {
         System.arraycopy(original, 0, newArray, 0, original.length);
         return newArray;
     }
+
+    private double calculateTotalBilled() {
+        double total = 0;
+        for (int i = 0; i < billingCount; i++) {
+            total += billingRecords[i].getTotalAmount();
+        }
+        return total;
+    }
+
+    private double calculateTotalPaid() {
+        double total = 0;
+        for (int i = 0; i < paymentCount; i++) {
+            total += payments[i].getAmountPaid();
+        }
+        return total;
+    }
+
     @Override
     public void work() {
         System.out.println("Patient " + getName() + " is resting to recover.");
     }
 
-
     @Override
     public void performDuties() {
-
         System.out.println("Patient " + getName() + " is undergoing treatment for " + disease + ".");
     }
 

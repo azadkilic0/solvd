@@ -1,18 +1,29 @@
 package hospital.entities;
 
+import exceptions.InvalidPrescriptionException;
+
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class Prescription {
     private String medicationName;
     private String dosage;
     private Patient patient;
     private Doctor doctor;
+    private static final Logger logger = Logger.getLogger(Prescription.class.getName());
 
     public Prescription(String medicationName, String dosage, Patient patient, Doctor doctor) {
         this.medicationName = medicationName;
         this.dosage = dosage;
         this.patient = patient;
         this.doctor = doctor;
+    }
+
+    public void validatePrescription(String prescription) {
+        if (prescription == null || prescription.isEmpty()) {
+            throw new InvalidPrescriptionException("Invalid prescription provided.");
+        }
+        logger.info("Prescription validated: " + prescription);
     }
 
     public String getMedicationName() {

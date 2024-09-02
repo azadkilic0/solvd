@@ -11,7 +11,7 @@ public class Payment {
         this.invoice = invoice;
         this.amountPaid = amountPaid;
         this.paymentDate = LocalDate.now();
-        this.invoice.markAsPaid();  // Mark the invoice as paid
+        this.invoice.markAsPaid();
     }
 
     public Invoice getInvoice() {
